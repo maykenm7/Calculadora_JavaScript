@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculadora de precios</title>
+</head>
+<body>
+  <h1>Calculadora de precios</h1>
+  <p>Ingresa el precio base y el descuento para calcular el precio final:</p>
+  <form>
+    <label for="precioBase">Precio base:</label>
+    <input type="number" id="precioBase" name="precioBase" required>
+    <br>
+    <label for="descuento">Descuento:</label>
+    <input type="number" id="descuento" name="descuento" required>
+    <br>
+    <button type="button" onclick="calcular()">Calcular</button>
+  </form>
+  <p id="resultado"></p>
+  <script>
+    function calcular() {
+      var precioBase = parseInt(document.getElementById("precioBase").value);
+      var descuento = parseInt(document.getElementById("descuento").value);
+      var precioFinal = calcularPrecio(precioBase, descuento);
+      document.getElementById("resultado").textContent = precioFinal;
+    }
+    
+    function calcularPrecio(precioBase, descuento) {
+      if (precioBase <= 0 || descuento < 0 || descuento > 100) {
+        return "Los valores ingresados son inválidos";
+      } else if (descuento === 0) {
+        return "El precio final sin descuento es $" + precioBase;
+      } else {
+        var precioFinal = precioBase - (precioBase * (descuento / 100));
+        return "El precio final con descuento es $" + precioFinal;
+      }
+    }
+  </script>
+</body>
+</html>
